@@ -1,0 +1,145 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { t } from '~/utils/i18n';
+
+const currentFocus = [
+  { icon: '🚀', label: 'AI Infra & Inference Engines' },
+  { icon: '🔧', label: 'Embedded AI Deployment' },
+  { icon: '⚡', label: 'High-Performance C++' },
+  { icon: '🤖', label: 'AI Toolchain & Dev Productivity' },
+];
+
+const techStack = {
+  'Languages': ['C++ 17/20/23', 'Python', 'CUDA', 'Rust'],
+  'AI/ML': ['PyTorch', 'ONNX Runtime', 'TensorRT', 'vLLM'],
+  'Embedded': ['ROS2', 'RK3588', 'Yocto', 'CMake'],
+  'Tools': ['Git', 'Docker', 'Linux', 'GDB/Perf'],
+};
+
+const aiTools = [
+  'Claude Code — primary programming partner',
+  'Cursor — IDE coding occasionally',
+  'GitHub Copilot — code completion',
+  'ChatGPT — design discussion & architecture',
+  'Perplexity — real-time search & research',
+  'Windsurf — complex project navigation',
+];
+
+const contacts = [
+  { label: 'GitHub', value: 'github.com/MouL5192bbb', href: 'https://github.com/MouL5192bbb' },
+  { label: 'Email', value: 'hi@buildbyliang.com', href: 'mailto:hi@buildbyliang.com' },
+  { label: 'Twitter', value: '@MouL5192bbb', href: 'https://twitter.com/MouL5192bbb' },
+];
+---
+
+<BaseLayout title={t('en', 'about.title')} description={t('en', 'about.intro')}>
+  <article class="prose-container py-12 md:py-16">
+    <header class="mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+        {t('en', 'about.title')}
+      </h1>
+      <p class="text-lg text-ink-600 leading-relaxed">
+        {t('en', 'about.intro')}
+      </p>
+    </header>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6 flex items-center gap-2">
+        <span class="w-1 h-6 bg-accent rounded"></span>
+        {t('en', 'about.current_focus')}
+      </h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {currentFocus.map((item) => (
+          <div class="card flex items-center gap-3">
+            <span class="text-2xl">{item.icon}</span>
+            <span class="font-medium">{item.label}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6 flex items-center gap-2">
+        <span class="w-1 h-6 bg-accent rounded"></span>
+        {t('en', 'about.stack')}
+      </h2>
+      <div class="grid sm:grid-cols-2 gap-6">
+        {Object.entries(techStack).map(([category, items]) => (
+          <div class="card">
+            <h3 class="text-sm font-semibold text-ink-500 uppercase tracking-wider mb-3">
+              {category}
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {items.map((item) => (
+                <span class="tag-chip">{item}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6 flex items-center gap-2">
+        <span class="w-1 h-6 bg-accent rounded"></span>
+        {t('en', 'about.tools')}
+      </h2>
+      <div class="card">
+        <ul class="space-y-2 text-ink-700">
+          {aiTools.map((tool) => (
+            <li class="flex items-start gap-2">
+              <span class="text-accent mt-1">▸</span>
+              <span>{tool}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="text-sm text-ink-500 mt-4 italic">
+          In the AI era, the biggest leverage for C++ engineers isn't writing more code — it's knowing when to let AI write, while you only Review.
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6 flex items-center gap-2">
+        <span class="w-1 h-6 bg-accent rounded"></span>
+        {t('en', 'about.contact')}
+      </h2>
+      <div class="card space-y-3">
+        {contacts.map((contact) => (
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-ink-500">{contact.label}</span>
+            <a
+              href={contact.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-ink-950 hover:text-accent transition-colors font-medium"
+            >
+              {contact.value}
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-6 flex items-center gap-2">
+        <span class="w-1 h-6 bg-accent rounded"></span>
+        {t('en', 'about.philosophy')}
+      </h2>
+      <div class="card prose prose-lg max-w-none">
+        <p>
+          I believe in <strong class="text-accent">"grounded at the bottom, soaring at the top"</strong>.
+        </p>
+        <p>
+          C++ has given me a way of thinking about computers — from memory layout to CPU pipelines, from SIMD instructions to GPU kernels. These "invisible details" are precisely what's scarcest in the AI era.
+        </p>
+        <p>
+          And AI tools let me think from a higher vantage point — delegate tedious implementation to machines, reserve precious time for architecture, for creation, for decisions that genuinely need human judgment.
+        </p>
+        <p>
+          This site is my notebook of thoughts. If you're on a similar path, let's talk.
+        </p>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

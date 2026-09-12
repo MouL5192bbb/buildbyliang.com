@@ -1,0 +1,51 @@
+---
+import { getLocaleFromUrl } from '~/utils/i18n';
+
+interface Props {
+  slug: string;
+  title: string;
+  description: string;
+  pubDate: Date;
+  tags: string[];
+  readingTime: number;
+}
+
+const { slug, title, description, pubDate, tags, readingTime } = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const pathPrefix = locale === 'en' ? '/en' : '';
+
+const dateFormatter = new Intl.DateTimeFormat(locale === 'zh' ? 'zh-CN' : 'en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+---
+
+<article class="card group">
+  <a href={`${pathPrefix}/blog/${slug}`} class="block">
+    <div class="flex items-center gap-2 text-xs text-ink-500 mb-3">
+      <time datetime={pubDate.toISOString()}>{dateFormatter.format(pubDate)}</time>
+      <span>·</span>
+      <span>{readingTime} min</span>
+    </div>
+
+    <h3 class="text-xl font-semibold text-ink-950 mb-2
+               group-hover:text-accent transition-colors">
+      {title}
+    </h3>
+
+    <p class="text-sm text-ink-600 leading-relaxed mb-4 line-clamp-2">
+      {description}
+    </p>
+
+    {tags.length > 0 && (
+      <div class="flex flex-wrap gap-1.5">
+        {tags.slice(0, 3).map((tag) => (
+          <span class="tag-chip text-[11px]">
+            #{tag}
+          </span>
+        ))}
+      </div>
+    )}
+  </a>
+</article>

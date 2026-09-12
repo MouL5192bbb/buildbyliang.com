@@ -1,0 +1,57 @@
+{
+  "site": {
+    "title": "buildbyliang",
+    "description": "A C++ engineer's notes on AI Infra, embedded systems & high-performance engineering",
+    "tagline": "AI Infra · Embedded · HPC",
+    "author": "Liang"
+  },
+  "nav": {
+    "home": "Home",
+    "blog": "Blog",
+    "projects": "Projects",
+    "about": "About"
+  },
+  "home": {
+    "greeting": "Hi, I'm Liang",
+    "intro": "A C++ engineer documenting hard-won lessons in AI Infra, embedded systems, and high-performance engineering. In this AI-reshaped era, I want to leave some thoughts worth re-reading — through code and words.",
+    "cta_blog": "Read the blog",
+    "cta_projects": "View projects",
+    "latest_posts": "Latest posts",
+    "view_all": "View all →"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Notes on AI Infra, embedded systems and high-performance C++",
+    "all_tags": "All tags",
+    "tagged_with": "Tagged:",
+    "no_posts": "No posts yet. Stay tuned.",
+    "reading_time": "min read",
+    "published_on": "Published on",
+    "updated_on": "Updated on",
+    "min_read": "min",
+    "back_to_blog": "← Back to blog"
+  },
+  "projects": {
+    "title": "Projects",
+    "description": "Open-source projects and indie products I'm building",
+    "view_on_github": "View on GitHub →"
+  },
+  "about": {
+    "title": "About",
+    "intro": "A C++ engineer exploring more possibilities with code and words in the AI era.",
+    "current_focus": "Current Focus",
+    "stack": "Tech Stack",
+    "tools": "AI Tools",
+    "contact": "Get in Touch",
+    "philosophy": "Philosophy"
+  },
+  "footer": {
+    "built_with": "Built with Astro, deployed on Cloudflare",
+    "rights": "All rights reserved"
+  },
+  "common": {
+    "language": "Language",
+    "switch_to_english": "English",
+    "switch_to_chinese": "中文"
+  }
+}

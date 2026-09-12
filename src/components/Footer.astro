@@ -1,0 +1,37 @@
+---
+import { t, type Locale } from '~/utils/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-ink-200 mt-24">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <div class="text-sm text-ink-500">
+        © {year} Liang · {t(locale, 'footer.rights')}
+      </div>
+      <div class="flex items-center gap-6 text-sm text-ink-500">
+        <a
+          href="https://github.com/MouL5192bbb"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-accent transition-colors"
+        >
+          GitHub
+        </a>
+        <a
+          href={`/${locale === 'en' ? 'en/' : ''}rss.xml`}
+          class="hover:text-accent transition-colors"
+        >
+          RSS
+        </a>
+        <span class="text-ink-400">{t(locale, 'footer.built_with')}</span>
+      </div>
+    </div>
+  </div>
+</footer>

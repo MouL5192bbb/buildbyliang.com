@@ -1,0 +1,57 @@
+{
+  "site": {
+    "title": "buildbyliang",
+    "description": "一个 C++ 程序员，记录 AI Infra、嵌入式与高性能工程的硬核实战",
+    "tagline": "AI Infra · Embedded · HPC",
+    "author": "Liang"
+  },
+  "nav": {
+    "home": "首页",
+    "blog": "博客",
+    "projects": "项目",
+    "about": "关于"
+  },
+  "home": {
+    "greeting": "你好，我是 Liang",
+    "intro": "一个 C++ 工程师，记录 AI Infra、嵌入式系统与高性能工程领域的硬核实战。在这个 AI 重塑一切的时代，我想用代码和文字，留下一些值得反复阅读的思考。",
+    "cta_blog": "阅读博客",
+    "cta_projects": "查看项目",
+    "latest_posts": "最新文章",
+    "view_all": "查看全部 →"
+  },
+  "blog": {
+    "title": "博客",
+    "description": "记录我在 AI Infra、嵌入式和高性能 C++ 领域的探索",
+    "all_tags": "所有标签",
+    "tagged_with": "标签：",
+    "no_posts": "暂无文章，敬请期待。",
+    "reading_time": "分钟阅读",
+    "published_on": "发布于",
+    "updated_on": "更新于",
+    "min_read": "分钟",
+    "back_to_blog": "← 返回博客列表"
+  },
+  "projects": {
+    "title": "项目",
+    "description": "我正在做的开源项目和独立产品",
+    "view_on_github": "在 GitHub 查看 →"
+  },
+  "about": {
+    "title": "关于我",
+    "intro": "一个 C++ 工程师，在 AI 时代用代码和文字探索更多可能。",
+    "current_focus": "当前专注",
+    "stack": "技术栈",
+    "tools": "AI 工具",
+    "contact": "联系方式",
+    "philosophy": "我的理念"
+  },
+  "footer": {
+    "built_with": "用 Astro 构建，部署在 Cloudflare",
+    "rights": "保留所有权利"
+  },
+  "common": {
+    "language": "语言",
+    "switch_to_english": "English",
+    "switch_to_chinese": "中文"
+  }
+}

@@ -1,0 +1,153 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { t } from '~/utils/i18n';
+
+const currentFocus = [
+  { icon: '🚀', label_zh: 'AI Infra 与推理引擎', label_en: 'AI Infra & Inference Engines' },
+  { icon: '🔧', label_zh: '嵌入式 AI 部署', label_en: 'Embedded AI Deployment' },
+  { icon: '⚡', label_zh: '高性能 C++ 工程实践', label_en: 'High-Performance C++' },
+  { icon: '🤖', label_zh: 'AI 工具链与开发效率', label_en: 'AI Toolchain & Dev Productivity' },
+];
+
+const techStack = {
+  'Languages': ['C++ 17/20/23', 'Python', 'CUDA', 'Rust'],
+  'AI/ML': ['PyTorch', 'ONNX Runtime', 'TensorRT', 'vLLM'],
+  'Embedded': ['ROS2', 'RK3588', 'Yocto', 'CMake'],
+  'Tools': ['Git', 'Docker', 'Linux', 'GDB/Perf'],
+};
+
+const aiTools = [
+  'Claude Code - 主要编程伙伴',
+  'Cursor - 偶尔 IDE 编码',
+  'GitHub Copilot - 代码补全',
+  'ChatGPT - 方案讨论与架构',
+  'Perplexity - 实时搜索调研',
+  'Windsurf - 复杂项目导航',
+];
+
+const contacts = [
+  { label: 'GitHub', value: 'github.com/MouL5192bbb', href: 'https://github.com/MouL5192bbb' },
+  { label: 'Email', value: 'hi@buildbyliang.com', href: 'mailto:hi@buildbyliang.com' },
+  { label: 'Twitter', value: '@MouL5192bbb', href: 'https://twitter.com/MouL5192bbb' },
+];
+---
+
+<BaseLayout title={t('zh', 'about.title')} description={t('zh', 'about.intro')}>
+  <article class="prose-container py-12 md:py-16">
+    <header class="mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+        {t('zh', 'about.title')}
+      </h1>
+      <p class="text-lg text-ink-600 leading-relaxed">
+        {t('zh', 'about.intro')}
+      </p>
+    </header>
+
+    <!-- 当前专注 -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6 flex items-center gap-2">
+        <span class="w-1 h-6 bg-accent rounded"></span>
+        {t('zh', 'about.current_focus')}
+      </h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {currentFocus.map((item) => (
+          <div class="card flex items-center gap-3">
+            <span class="text-2xl">{item.icon}</span>
+            <span class="font-medium">{item.label_zh}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6 flex items-center gap-2">
+        <span class="w-1 h-6 bg-accent rounded"></span>
+        {t('zh', 'about.stack')}
+      </h2>
+      <div class="grid sm:grid-cols-2 gap-6">
+        {Object.entries(techStack).map(([category, items]) => (
+          <div class="card">
+            <h3 class="text-sm font-semibold text-ink-500 uppercase tracking-wider mb-3">
+              {category}
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {items.map((item) => (
+                <span class="tag-chip">{item}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- AI 工具 -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6 flex items-center gap-2">
+        <span class="w-1 h-6 bg-accent rounded"></span>
+        {t('zh', 'about.tools')}
+      </h2>
+      <div class="card">
+        <ul class="space-y-2 text-ink-700">
+          {aiTools.map((tool) => (
+            <li class="flex items-start gap-2">
+              <span class="text-accent mt-1">▸</span>
+              <span>{tool}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="text-sm text-ink-500 mt-4 italic">
+          在 AI 时代，C++ 程序员的最大杠杆不是写更多代码，而是知道什么时候该让 AI 写、自己只需要 Review。
+        </p>
+      </div>
+    </section>
+
+    <!-- 联系方式 -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6 flex items-center gap-2">
+        <span class="w-1 h-6 bg-accent rounded"></span>
+        {t('zh', 'about.contact')}
+      </h2>
+      <div class="card space-y-3">
+        {contacts.map((contact) => (
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-ink-500">{contact.label}</span>
+            <a
+              href={contact.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-ink-950 hover:text-accent transition-colors font-medium"
+            >
+              {contact.value}
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 理念 -->
+    <section>
+      <h2 class="text-2xl font-semibold mb-6 flex items-center gap-2">
+        <span class="w-1 h-6 bg-accent rounded"></span>
+        {t('zh', 'about.philosophy')}
+      </h2>
+      <div class="card prose prose-lg max-w-none">
+        <p>
+          我相信 <strong class="text-accent">"在底层扎实，在上层飞扬"</strong>。
+        </p>
+        <p>
+          C++ 给了我理解计算机的思维方式 ——
+          从内存布局到 CPU 流水线，从 SIMD 指令到 GPU 内核。
+          这些"看不见的细节"，恰恰是 AI 时代最稀缺的竞争力。
+        </p>
+        <p>
+          而 AI 工具让我能站在更高的视角思考 ——
+          把繁琐的实现交给机器，把宝贵的时间留给架构、留给创造、留给那些真正需要人类判断的决策。
+        </p>
+        <p>
+          这个网站是我的思考笔记。如果你恰好也走在类似的路上，欢迎交流。
+        </p>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

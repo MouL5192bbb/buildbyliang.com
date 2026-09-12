@@ -1,0 +1,68 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { t, type Locale, locales } from '~/utils/i18n';
+
+interface Props {
+  locale: Locale;
+  otherLocale: Locale;
+  otherLocalePath: string;
+}
+
+const { locale, otherLocale, otherLocalePath } = Astro.props;
+const pathPrefix = locale === 'en' ? '/en' : '';
+const navItems = [
+  { href: `${pathPrefix}/`, label: t(locale, 'nav.home') },
+  { href: `${pathPrefix}/blog`, label: t(locale, 'nav.blog') },
+  { href: `${pathPrefix}/projects`, label: t(locale, 'nav.projects') },
+  { href: `${pathPrefix}/about`, label: t(locale, 'nav.about') },
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="sticky top-0 z-50 border-b border-ink-200 bg-white/80 backdrop-blur-md">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    <nav class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a
+        href={pathPrefix || '/'}
+        class="flex items-center gap-2 group"
+      >
+        <div class="w-7 h-7 rounded-md bg-ink-950 flex items-center justify-center
+                    group-hover:bg-accent transition-colors duration-200">
+          <span class="text-white group-hover:text-ink-950 text-sm font-bold transition-colors">L</span>
+        </div>
+        <span class="font-semibold text-ink-950">buildbyliang</span>
+      </a>
+
+      <!-- 导航菜单 -->
+      <div class="flex items-center gap-1 sm:gap-2">
+        {navItems.map((item) => {
+          const isActive = currentPath === item.href ||
+                          (item.href !== pathPrefix && item.href !== '/' && currentPath.startsWith(item.href));
+          return (
+            <a
+              href={item.href}
+              class:list={[
+                'px-3 py-2 text-sm font-medium rounded-md transition-colors',
+                isActive
+                  ? 'text-accent'
+                  : 'text-ink-600 hover:text-ink-950 hover:bg-ink-100',
+              ]}
+              aria-current={isActive ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          );
+        })}
+
+        <!-- 语言切换 -->
+        <LanguageSwitcher
+          currentLocale={locale}
+          otherLocale={otherLocale}
+          otherLocalePath={otherLocalePath}
+        />
+      </div>
+    </nav>
+  </div>
+</header>

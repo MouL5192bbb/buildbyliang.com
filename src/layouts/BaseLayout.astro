@@ -1,0 +1,80 @@
+---
+import '~/styles/global.css';
+import Header from '~/components/Header.astro';
+import Footer from '~/components/Footer.astro';
+import { getLocaleFromUrl, t } from '~/utils/i18n';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { title, description, ogImage } = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const siteTitle = t(locale, 'site.title');
+const siteDescription = description || t(locale, 'site.description');
+const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
+
+// 计算当前路径用于语言切换
+const currentPath = Astro.url.pathname;
+const otherLocale = locale === 'zh' ? 'en' : 'zh';
+const otherLocalePath = locale === 'zh'
+  ? `/en${currentPath === '/' ? '' : currentPath}`
+  : currentPath.replace(/^\/en/, '') || '/';
+---
+
+<!doctype html>
+<html lang={locale === 'zh' ? 'zh-CN' : 'en'}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- 基础 SEO -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={siteDescription} />
+    <link rel="canonical" href={new URL(currentPath, Astro.site).toString()} />
+
+    <!-- hreflang 双语 SEO -->
+    <link rel="alternate" hreflang="zh-CN" href={new URL(currentPath.replace(/^\/en/, '') || '/', Astro.site).toString()} />
+    <link rel="alternate" hreflang="en" href={new URL(`/en${currentPath.replace(/^\/en/, '') || ''}`, Astro.site).toString()} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site).toString()} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={siteDescription} />
+    <meta property="og:locale" content={locale === 'zh' ? 'zh_CN' : 'en_US'} />
+    <meta property="og:site_name" content={siteTitle} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={siteDescription} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title={siteTitle} href={`/rss${locale === 'en' ? '-en' : ''}.xml`} />
+
+    <!-- 字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header locale={locale} otherLocalePath={otherLocalePath} otherLocale={otherLocale} />
+
+    <main class="flex-1 fade-in">
+      <slot />
+    </main>
+
+    <Footer locale={locale} />
+  </body>
+</html>
