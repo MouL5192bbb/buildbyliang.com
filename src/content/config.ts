@@ -16,6 +16,8 @@ const blog = defineCollection({
       locale: z.enum(['zh', 'en']).default('zh'),
       // URL slug（不带 locale 前缀）
       slug: z.string().optional(),
+      // URL 显示用的 slug（去掉 locale 后缀，例如 hello-world-zh → hello-world）
+      urlSlug: z.string().optional(),
       // 可选：英文版对应的中文版 slug（用于双语关联）
       translationSlug: z.string().optional(),
       // 可选：草稿状态

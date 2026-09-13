@@ -2,6 +2,7 @@
 import PostLayout from '~/layouts/PostLayout.astro';
 import { getCollection, render } from 'astro:content';
 import readingTime from 'reading-time';
+import { getPostSlug } from '~/utils/posts';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => {
@@ -10,12 +11,7 @@ export async function getStaticPaths() {
 
   return posts.map((post) => ({
     params: {
-      slug:
-        post.data.slug ??
-        post.id
-          .split('/')
-          .pop()!
-          .replace(/\.(md|mdx)$/, ''),
+      slug: getPostSlug(post.id, post.data),
     },
     props: { post },
   }));

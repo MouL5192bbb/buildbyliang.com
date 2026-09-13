@@ -4,7 +4,8 @@ description: '一个 C++ 程序员，在 AI 时代重新出发。这个网站是
 pubDate: 2026-09-12
 tags: ['meta', 'career', 'cpp']
 locale: 'zh'
-slug: 'hello-world'
+slug: 'hello-world-zh'
+urlSlug: 'hello-world'
 ---
 
 ## 为什么做这个站

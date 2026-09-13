@@ -4,7 +4,8 @@ description: 'A C++ engineer, restarting in the AI era. This site is where I doc
 pubDate: 2026-09-12
 tags: ['meta', 'career', 'cpp']
 locale: 'en'
-slug: 'hello-world'
+slug: 'hello-world-en'
+urlSlug: 'hello-world'
 ---
 
 ## Why this site

@@ -1,7 +1,11 @@
 // 文章工具函数 - 统一处理 slug 计算
-// 优先使用 frontmatter 的 slug 字段（推荐），回退到文件 id
-export function getPostSlug(postId: string, frontmatterSlug?: string): string {
-  if (frontmatterSlug) return frontmatterSlug;
+// 优先级：urlSlug（URL 用） > slug（内容集合 id 用） > 文件名
+export function getPostSlug(
+  postId: string,
+  frontmatter?: { slug?: string; urlSlug?: string }
+): string {
+  if (frontmatter?.urlSlug) return frontmatter.urlSlug;
+  if (frontmatter?.slug) return frontmatter.slug;
   return (
     postId
       .split('/')
