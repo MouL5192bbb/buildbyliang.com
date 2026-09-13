@@ -1,95 +1,67 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro';
 import { t } from '~/utils/i18n';
+import { projects } from '~/data/projects';
 
-const projects = [
-  {
-    name: 'cpp-ai-toolkit',
-    description_zh: '面向 C++ 工程师的 AI 工具集合，包含代码审查、重构、测试生成、性能分析等工具，让 AI 真正赋能系统级开发。',
-    description_en: 'AI toolkit for C++ engineers: code review, refactoring, test generation, performance profiling. Empowering system-level development with AI.',
-    tags: ['C++', 'AI', 'DevTools', 'Open Source'],
-    status: 'Active',
-    stars: 128,
-    url: 'https://github.com/MouL5192bbb/cpp-ai-toolkit',
-    language: 'C++',
-  },
-  {
-    name: 'infer-lab',
-    description_zh: '推理引擎学习笔记配套代码：从 PyTorch → ONNX → TensorRT 全流程实操，每一步都有可运行的示例。',
-    description_en: 'Companion code for inference engine study notes: end-to-end PyTorch → ONNX → TensorRT pipeline with runnable examples.',
-    tags: ['AI Infra', 'CUDA', 'TensorRT', 'Tutorial'],
-    status: 'Active',
-    stars: 64,
-    url: 'https://github.com/MouL5192bbb/infer-lab',
-    language: 'C++/Python',
-  },
-  {
-    name: 'embedded-ai-cookbook',
-    description_zh: '嵌入式 AI 部署实战集：量化、剪枝、ONNX Runtime 在 RK3588 / Jetson 上的工程化经验。',
-    description_en: 'Embedded AI deployment cookbook: quantization, pruning, ONNX Runtime on RK3588 / Jetson — engineering practices.',
-    tags: ['Embedded', 'AI', 'Edge Computing'],
-    status: 'Planning',
-    stars: 0,
-    url: '#',
-    language: 'C++/Python',
-  },
-];
+const locale = 'zh' as const;
 ---
 
-<BaseLayout title={t('zh', 'projects.title')} description={t('zh', 'projects.description')}>
-  <section class="max-w-5xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+<BaseLayout title={t(locale, 'projects.title')} description={t(locale, 'projects.description')}>
+  <section class="mx-auto max-w-5xl px-4 py-12 sm:px-6 md:py-16">
     <header class="mb-12">
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-        {t('zh', 'projects.title')}
+      <h1 class="mb-4 text-4xl font-bold tracking-tight md:text-5xl">
+        {t(locale, 'projects.title')}
       </h1>
-      <p class="text-lg text-ink-600 leading-relaxed max-w-2xl">
-        {t('zh', 'projects.description')}
+      <p class="max-w-2xl text-lg leading-relaxed text-ink-600">
+        {t(locale, 'projects.description')}
       </p>
     </header>
 
     <div class="grid gap-6">
-      {projects.map((project) => (
-        <article class="card group">
-          <div class="flex items-start justify-between gap-4 mb-3">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-lg bg-ink-950 flex items-center justify-center
-                          group-hover:bg-accent transition-colors">
-                <svg class="w-5 h-5 text-white group-hover:text-ink-950 transition-colors"
-                     fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-              </div>
-              <div>
-                <h2 class="text-xl font-semibold group-hover:text-accent transition-colors">
-                  {project.name}
-                </h2>
-                <p class="text-xs text-ink-500 mt-0.5">
-                  {project.language} · {project.status} · ⭐ {project.stars}
-                </p>
+      {
+        projects.map((project) => (
+          <article class="card group">
+            <div class="mb-3 flex items-start justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-ink-950 transition-colors group-hover:bg-accent">
+                  <svg
+                    class="h-5 w-5 text-white transition-colors group-hover:text-ink-950"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                  </svg>
+                </div>
+                <div>
+                  <h2 class="text-xl font-semibold transition-colors group-hover:text-accent">
+                    {project.name}
+                  </h2>
+                  <p class="mt-0.5 text-xs text-ink-500">
+                    {project.language} · {project.status} · ⭐ {project.stars}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <p class="text-sm text-ink-600 leading-relaxed mb-4">
-            {project.description_zh}
-          </p>
+            <p class="mb-4 text-sm leading-relaxed text-ink-600">{project.description[locale]}</p>
 
-          <div class="flex flex-wrap gap-1.5 mb-4">
-            {project.tags.map((tag) => (
-              <span class="tag-chip text-[11px]">{tag}</span>
-            ))}
-          </div>
+            <div class="mb-4 flex flex-wrap gap-1.5">
+              {project.tags.map((tag) => (
+                <span class="tag-chip text-[11px]">{tag}</span>
+              ))}
+            </div>
 
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-sm text-accent hover:underline font-medium inline-flex items-center gap-1"
-          >
-            {t('zh', 'projects.view_on_github')}
-          </a>
-        </article>
-      ))}
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1 text-sm font-medium text-accent hover:underline"
+            >
+              {t(locale, 'projects.view_on_github')}
+            </a>
+          </article>
+        ))
+      }
     </div>
   </section>
 </BaseLayout>

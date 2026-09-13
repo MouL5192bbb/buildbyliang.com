@@ -4,28 +4,39 @@ import en from '~/i18n/en.json';
 
 export type Locale = 'zh' | 'en';
 export const defaultLocale: Locale = 'zh';
-export const locales: Locale[] = ['zh', 'en'];
+export const locales: readonly Locale[] = ['zh', 'en'] as const;
 
-const translations = { zh, en };
+type TranslationTree = typeof zh;
+type NestedKey<T, Prefix extends string = ''> = {
+  [K in keyof T & string]: T[K] extends string
+    ? `${Prefix}${K}`
+    : T[K] extends object
+      ? NestedKey<T[K], `${Prefix}${K}.`>
+      : never;
+}[keyof T & string];
 
-export function t(locale: Locale, key: string): string {
+export type TranslationKey = NestedKey<TranslationTree>;
+
+const translations: Record<Locale, TranslationTree> = { zh, en };
+
+export function t(locale: Locale, key: TranslationKey | string): string {
   const keys = key.split('.');
-  let value: any = translations[locale];
+  let value: unknown = translations[locale];
 
   for (const k of keys) {
     if (value && typeof value === 'object' && k in value) {
-      value = value[k];
+      value = (value as Record<string, unknown>)[k];
     } else {
       // 回退到默认语言
-      value = translations[defaultLocale];
+      let fallback: unknown = translations[defaultLocale];
       for (const fallbackKey of keys) {
-        if (value && typeof value === 'object' && fallbackKey in value) {
-          value = value[fallbackKey];
+        if (fallback && typeof fallback === 'object' && fallbackKey in fallback) {
+          fallback = (fallback as Record<string, unknown>)[fallbackKey];
         } else {
           return key; // 找不到翻译返回 key
         }
       }
-      break;
+      return typeof fallback === 'string' ? fallback : key;
     }
   }
 
@@ -43,7 +54,7 @@ export function getLocalePath(locale: Locale, path: string): string {
 
 // 从 URL 解析 locale
 export function getLocaleFromUrl(url: URL): Locale {
-  const [, lang] = url.pathname.split('/');
-  if (lang === 'en') return 'en';
+  const segments = url.pathname.split('/').filter(Boolean);
+  if (segments[0] === 'en') return 'en';
   return defaultLocale;
 }

@@ -49,6 +49,11 @@
     "built_with": "Built with Astro, deployed on Cloudflare",
     "rights": "All rights reserved"
   },
+  "error": {
+    "404_title": "Page not found",
+    "404_description": "The page you visited may have been removed or the link is broken.",
+    "404_cta": "Back to home"
+  },
   "common": {
     "language": "Language",
     "switch_to_english": "English",

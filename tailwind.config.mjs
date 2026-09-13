@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 // 极简黑白视觉系统 + 亮绿点缀 (#00dc82)
 // 参考 leerob.io 风格：白底黑字 + 一个高亮色
+import typography from '@tailwindcss/typography';
+
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}'],
   darkMode: 'class',
@@ -125,5 +127,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [typography],
 };

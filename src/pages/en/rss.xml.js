@@ -1,27 +1,27 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
-import { defaultLocale } from '~/utils/i18n';
 import { getPostSlug } from '~/utils/posts';
 
-// 中文 RSS
+// English RSS feed at /en/rss.xml
 export async function GET(context) {
   const posts = (
     await getCollection('blog', ({ data }) => {
-      return data.locale === defaultLocale && !data.draft;
+      return data.locale === 'en' && !data.draft;
     })
   ).sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
   return rss({
     title: 'buildbyliang',
-    description: '一个 C++ 程序员，记录 AI Infra、嵌入式与高性能工程的硬核实战',
+    description:
+      "A C++ engineer's notes on AI Infra, embedded systems & high-performance engineering",
     site: context.site,
     items: posts.map((post) => ({
       title: post.data.title,
       description: post.data.description,
       pubDate: post.data.pubDate,
-      link: `/blog/${getPostSlug(post.id, post.data.slug)}`,
+      link: `/en/blog/${getPostSlug(post.id, post.data.slug)}`,
       categories: post.data.tags,
     })),
-    customData: '<language>zh-CN</language>',
+    customData: '<language>en-US</language>',
   });
 }

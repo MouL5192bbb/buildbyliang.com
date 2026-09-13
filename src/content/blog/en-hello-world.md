@@ -1,9 +1,10 @@
 ---
 title: "Hello, World: I'm Liang, and This Is My Notebook"
-description: "A C++ engineer, restarting in the AI era. This site is where I document AI Infra, embedded systems, and high-performance engineering — and where I leave my thoughts for the future."
+description: 'A C++ engineer, restarting in the AI era. This site is where I document AI Infra, embedded systems, and high-performance engineering — and where I leave my thoughts for the future.'
 pubDate: 2026-09-12
 tags: ['meta', 'career', 'cpp']
 locale: 'en'
+slug: 'hello-world'
 ---
 
 ## Why this site
@@ -25,6 +26,7 @@ I'll keep producing around three directions:
 ### 1. AI Infra / Embedded / High-Performance C++ (Main Track)
 
 This is my day job and where I have the most accumulated knowledge:
+
 - Source-code analysis of inference engines (vLLM, TensorRT-LLM)
 - Practical CUDA optimization cases (with Profiling data)
 - Modern takes on "old topics" — C++ coroutines, memory pools, zero-copy
@@ -33,6 +35,7 @@ This is my day job and where I have the most accumulated knowledge:
 ### 2. Programmer Workflow in the AI Era (30%)
 
 I'll document how I'm reshaping my development workflow with AI tools:
+
 - How I used Claude Code + Cursor to refactor a 100k-line legacy project
 - My `.cursorrules` / `CLAUDE.md` templates
 - The limits of AI tools in low-level C++ projects (what they do poorly, and why)
@@ -40,6 +43,7 @@ I'll document how I'm reshaping my development workflow with AI tools:
 ### 3. Programmer Growth & Mindset (20%)
 
 Broader reflections, for all engineers:
+
 - How students can get started with C++ / systems programming
 - How programmers can build "a second income beyond code"
 - My take on remote work, indie development, and technical evangelism

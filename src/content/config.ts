@@ -2,6 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 // 博客内容集合 - 双语
+// 文章用 locale 前缀（如 zh- / en-）区分，slug 字段是 URL 段
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
   schema: ({ image }) =>
@@ -13,6 +14,8 @@ const blog = defineCollection({
       tags: z.array(z.string()).default([]),
       // 标记语言版本
       locale: z.enum(['zh', 'en']).default('zh'),
+      // URL slug（不带 locale 前缀）
+      slug: z.string().optional(),
       // 可选：英文版对应的中文版 slug（用于双语关联）
       translationSlug: z.string().optional(),
       // 可选：草稿状态

@@ -10,7 +10,7 @@ interface Props {
   ogImage?: string;
 }
 
-const { title, description, ogImage } = Astro.props;
+const { title, description, ogImage = '/og-image.svg' } = Astro.props;
 const locale = getLocaleFromUrl(Astro.url);
 const siteTitle = t(locale, 'site.title');
 const siteDescription = description || t(locale, 'site.description');
@@ -19,9 +19,10 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 // 计算当前路径用于语言切换
 const currentPath = Astro.url.pathname;
 const otherLocale = locale === 'zh' ? 'en' : 'zh';
-const otherLocalePath = locale === 'zh'
-  ? `/en${currentPath === '/' ? '' : currentPath}`
-  : currentPath.replace(/^\/en/, '') || '/';
+const otherLocalePath =
+  locale === 'zh'
+    ? `/en${currentPath === '/' ? '' : currentPath}`
+    : currentPath.replace(/^\/en/, '') || '/';
 ---
 
 <!doctype html>
@@ -37,8 +38,16 @@ const otherLocalePath = locale === 'zh'
     <link rel="canonical" href={new URL(currentPath, Astro.site).toString()} />
 
     <!-- hreflang 双语 SEO -->
-    <link rel="alternate" hreflang="zh-CN" href={new URL(currentPath.replace(/^\/en/, '') || '/', Astro.site).toString()} />
-    <link rel="alternate" hreflang="en" href={new URL(`/en${currentPath.replace(/^\/en/, '') || ''}`, Astro.site).toString()} />
+    <link
+      rel="alternate"
+      hreflang="zh-CN"
+      href={new URL(currentPath.replace(/^\/en/, '') || '/', Astro.site).toString()}
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href={new URL(`/en${currentPath.replace(/^\/en/, '') || ''}`, Astro.site).toString()}
+    />
     <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site).toString()} />
 
     <!-- Open Graph -->
@@ -47,18 +56,27 @@ const otherLocalePath = locale === 'zh'
     <meta property="og:description" content={siteDescription} />
     <meta property="og:locale" content={locale === 'zh' ? 'zh_CN' : 'en_US'} />
     <meta property="og:site_name" content={siteTitle} />
-    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="buildbyliang — AI Infra · Embedded · HPC" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={siteDescription} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site).toString()} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- RSS -->
-    <link rel="alternate" type="application/rss+xml" title={siteTitle} href={`/rss${locale === 'en' ? '-en' : ''}.xml`} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={siteTitle}
+      href={locale === 'en' ? '/en/rss.xml' : '/rss.xml'}
+    />
 
     <!-- 字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -68,10 +86,10 @@ const otherLocalePath = locale === 'zh'
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
     />
   </head>
-  <body class="min-h-screen flex flex-col">
+  <body class="flex min-h-screen flex-col">
     <Header locale={locale} otherLocalePath={otherLocalePath} otherLocale={otherLocale} />
 
-    <main class="flex-1 fade-in">
+    <main class="fade-in flex-1">
       <slot />
     </main>
 

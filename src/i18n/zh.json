@@ -49,6 +49,11 @@
     "built_with": "用 Astro 构建，部署在 Cloudflare",
     "rights": "保留所有权利"
   },
+  "error": {
+    "404_title": "页面找不到了",
+    "404_description": "你访问的页面可能已经被移除或者链接拼错了。",
+    "404_cta": "返回首页"
+  },
   "common": {
     "language": "语言",
     "switch_to_english": "English",

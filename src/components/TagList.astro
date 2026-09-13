@@ -10,13 +10,12 @@ const label = locale === 'zh' ? '所有标签' : 'All tags';
 ---
 
 <div class="flex flex-wrap items-center gap-2">
-  <span class="text-sm text-ink-500 mr-2">{label}:</span>
-  {tags.map((tag) => (
-    <a
-      href={`${pathPrefix}/tags/${tag.name}`}
-      class="tag-chip"
-    >
-      #{tag.name} <span class="ml-1 text-ink-400">({tag.count})</span>
-    </a>
-  ))}
+  <span class="mr-2 text-sm text-ink-500">{label}:</span>
+  {
+    tags.map((tag) => (
+      <a href={`${pathPrefix}/tags/${tag.name}`} class="tag-chip">
+        #{tag.name} <span class="ml-1 text-ink-400">({tag.count})</span>
+      </a>
+    ))
+  }
 </div>

@@ -24,37 +24,38 @@ const dateFormatter = new Intl.DateTimeFormat(locale === 'zh' ? 'zh-CN' : 'en-US
 <BaseLayout title={title} description={description}>
   <article class="prose-container py-12 md:py-16">
     <!-- 文章头部 -->
-    <header class="mb-12 fade-in">
-      <div class="flex items-center gap-2 text-sm text-ink-500 mb-4">
+    <header class="fade-in mb-12">
+      <div class="mb-4 flex items-center gap-2 text-sm text-ink-500">
         <time datetime={pubDate.toISOString()}>{dateFormatter.format(pubDate)}</time>
         <span>·</span>
         <span>{readingTime} {t(locale, 'blog.min_read')}</span>
       </div>
 
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-ink-950 mb-4">
+      <h1 class="mb-4 text-4xl font-bold tracking-tight text-ink-950 md:text-5xl">
         {title}
       </h1>
 
-      <p class="text-lg text-ink-600 leading-relaxed">{description}</p>
+      <p class="text-lg leading-relaxed text-ink-600">{description}</p>
 
-      {tags.length > 0 && (
-        <div class="flex flex-wrap gap-2 mt-6">
-          {tags.map((tag) => (
-            <a
-              href={`/tags/${tag}`}
-              class="tag-chip"
-            >
-              #{tag}
-            </a>
-          ))}
-        </div>
-      )}
+      {
+        tags.length > 0 && (
+          <div class="mt-6 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <a href={`/tags/${tag}`} class="tag-chip">
+                #{tag}
+              </a>
+            ))}
+          </div>
+        )
+      }
 
-      {updatedDate && (
-        <p class="text-sm text-ink-500 mt-4 italic">
-          {t(locale, 'blog.updated_on')}: {dateFormatter.format(updatedDate)}
-        </p>
-      )}
+      {
+        updatedDate && (
+          <p class="mt-4 text-sm italic text-ink-500">
+            {t(locale, 'blog.updated_on')}: {dateFormatter.format(updatedDate)}
+          </p>
+        )
+      }
     </header>
 
     <!-- 文章正文 -->
@@ -63,17 +64,19 @@ const dateFormatter = new Intl.DateTimeFormat(locale === 'zh' ? 'zh-CN' : 'en-US
     </div>
 
     <!-- 文章底部 -->
-    <footer class="mt-16 pt-8 border-t border-ink-200">
+    <footer class="mt-16 border-t border-ink-200 pt-8">
       <a
         href={`/${locale === 'en' ? 'en/' : ''}blog`}
-        class="text-sm text-ink-600 hover:text-accent transition-colors"
+        class="text-sm text-ink-600 transition-colors hover:text-accent"
       >
         {t(locale, 'blog.back_to_blog')}
       </a>
 
       <!-- Giscus 评论系统占位（待域名注册后配置） -->
       <div class="mt-12">
-        <div class="rounded-lg border border-dashed border-ink-300 p-6 text-center text-sm text-ink-500">
+        <div
+          class="rounded-lg border border-dashed border-ink-300 p-6 text-center text-sm text-ink-500"
+        >
           💬 评论系统将在域名注册完成后启用 Giscus
         </div>
       </div>
