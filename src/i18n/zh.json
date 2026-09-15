@@ -34,7 +34,9 @@
   "projects": {
     "title": "项目",
     "description": "我正在做的开源项目和独立产品",
-    "view_on_github": "在 GitHub 查看 →"
+    "view_on_github": "在 GitHub 查看 →",
+    "empty_title": "暂无公开项目",
+    "empty_note": "我的工作主要通过博客文章分享。未来有真实项目时会更新这里。"
   },
   "about": {
     "title": "关于我",

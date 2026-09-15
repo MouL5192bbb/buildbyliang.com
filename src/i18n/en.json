@@ -34,7 +34,9 @@
   "projects": {
     "title": "Projects",
     "description": "Open-source projects and indie products I'm building",
-    "view_on_github": "View on GitHub →"
+    "view_on_github": "View on GitHub →",
+    "empty_title": "No public projects yet",
+    "empty_note": "My work is mainly shared through blog posts. This page will be updated when I have real projects to share."
   },
   "about": {
     "title": "About",
