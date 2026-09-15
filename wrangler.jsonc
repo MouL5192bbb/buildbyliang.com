@@ -3,7 +3,6 @@
   "name": "buildbyliang-com",
   "compatibility_date": "2026-09-15",
   "assets": {
-    "directory": "./dist",
-    "binding": "ASSETS"
+    "directory": "./dist"
   }
 }
